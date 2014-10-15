@@ -9,7 +9,8 @@
     tools:context=".Meuh">
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/sensorg"
+        android:text="@string/action_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
