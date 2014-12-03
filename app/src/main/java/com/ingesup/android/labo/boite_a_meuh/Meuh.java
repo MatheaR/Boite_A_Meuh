@@ -9,10 +9,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.media.MediaPlayer;
-import android.widget.Button;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,19 +17,6 @@ public class Meuh extends Activity {
     public int recup;
     String txt;
     public TextView sensorg;
-
-    private MediaPlayer mPlayer = null; // Initialisation d'un media
-
-
-    @Override  // Pause + Libération de mémoire pour le son
-    public void onPause() {
-        super.onPause();
-        if(mPlayer != null) {
-            mPlayer.stop();
-            mPlayer.release();
-        }
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +32,8 @@ public class Meuh extends Activity {
         }
 
 
-
-        final Button btn_playsound = (Button)findViewById(R.id.btn_play_sound);
-        btn_playsound.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playSound(R.raw.son);
-            }
-        });
     }
 
-
-    private void playSound(int resId) {
-        if(mPlayer != null) { // S'il y a déjà le son en route, on le coupe
-            mPlayer.stop();
-            mPlayer.release();
-        }
-        mPlayer = MediaPlayer.create(this, resId); // On créé le son
-        mPlayer.start(); // On joue le son
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
