@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 public class Meuh extends Activity {
     public int recup;
     String txt;
@@ -49,13 +50,13 @@ public class Meuh extends Activity {
 
 
 
-        /*final Button btn_playsound = (Button)findViewById(R.id.btn_play_sound);
+        final Button btn_playsound = (Button)findViewById(R.id.btn_play_sound);
         btn_playsound.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 playSound(R.raw.son);
             }
-        });*/
+        });
     }
 
 

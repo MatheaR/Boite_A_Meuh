@@ -7,5 +7,6 @@
     <string name="Son">Son</string>
     <string name="clic">Clic la !</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="btn_musique">Musique</string>
 
 </resources>
