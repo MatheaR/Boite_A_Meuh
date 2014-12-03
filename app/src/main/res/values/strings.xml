@@ -8,5 +8,8 @@
     <string name="clic">Clic la !</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="btn_musique">Musique</string>
+    <string name="left">Téléphone penché à gauche</string>
+    <string name="right">Téléphone penché à droite</string>
+
 
 </resources>

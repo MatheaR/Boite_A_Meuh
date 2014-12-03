@@ -18,10 +18,12 @@ import android.widget.Toast;
 
 
 
-public class Meuh extends Activity {
+public class MeuhActivity extends Activity {
     public int recup;
     String txt;
     public TextView sensorg;
+
+    private boolean mSoundCanLaunch;
 
     private MediaPlayer mPlayer = null; // Initialisation d'un media
 
@@ -40,10 +42,12 @@ public class Meuh extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meuh);
         sensorg = (TextView) findViewById(R.id.sensorg);
+
+        mSoundCanLaunch = true;
+
         SensorManager gestionnaireGyro = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         if (gestionnaireGyro.getDefaultSensor(Sensor.TYPE_GYROSCOPE)!=null) {
-            Sensor gyrosensor = gestionnaireGyro.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            gyroscope();
+            gyroscope(gestionnaireGyro);
             sensorg.setText(txt);
 
         }
@@ -89,16 +93,23 @@ public class Meuh extends Activity {
 
     }
 
-    public void gyroscope() {
+    public void gyroscope(SensorManager sensorManager) {
 
         SensorEventListener sel = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                //le toast saffiche pas donc on rentre meme pas dansle sensorchanged
-                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
-                float X = event.values[0];
-                float Y = event.values[1];
-                txt = Float.toString(X);
+
+                float roll = event.values[2];        // roll
+                float pitch = event.values[1];     // pitch
+
+                if (pitch < -45 && pitch > -135) {
+                    mSoundCanLaunch = true;
+                    // top side up
+                } else if (isTilted(roll) && mSoundCanLaunch) {
+                    // right side up
+                    playSound(R.raw.son);
+                    mSoundCanLaunch = false;
+                }
 
             }
 
@@ -108,6 +119,12 @@ public class Meuh extends Activity {
             }
         };
 
+        sensorManager.registerListener(sel, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_NORMAL);
 
+
+    }
+
+    private boolean isTilted(float degree){
+        return (degree > 45 || degree <-45);
     }
 }

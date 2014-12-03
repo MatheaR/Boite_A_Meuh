@@ -19,17 +19,20 @@ import java.util.ArrayList;
  * Created by Mathea on 15/10/2014.
  */
 
-    public class ScreenSlideActivity extends Activity implements View.OnTouchListener {
-    ImageView img;
+public class ScreenSlideActivity extends Activity implements View.OnTouchListener {
+
     float x1,x2;
     float y1, y2;
 
+    private ViewPager mViewPager;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meuh);
+        setContentView(R.layout.activity_slide);
 
-        img = (ImageView) findViewById(R.id.imageView);
-        img.setOnTouchListener(this);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+
+        mViewPager.set
     }
 
     public boolean onTouch(View v, MotionEvent touchevent) {
